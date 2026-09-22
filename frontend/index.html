@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Word Space</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <aside id="sidebar">
+      <header>
+        <p class="eyebrow">Local MiniLM + PCA</p>
+        <h1>3D Word Space</h1>
+        <p class="lede">Words or sentences start scattered, then drift into neighborhoods shaped by meaning.</p>
+      </header>
+
+      <div class="mode-toggle" role="tablist" aria-label="Input mode">
+        <button id="mode-words" type="button" class="is-active" data-mode="words">Words</button>
+        <button id="mode-sentences" type="button" data-mode="sentences">Sentences</button>
+      </div>
+
+      <label id="input-label" for="word-input">Words</label>
+      <textarea id="word-input" rows="10" spellcheck="false">king, queen, man, woman, prince, princess
+cat, dog, kitten, puppy
+apple, orange, banana, grape
+car, truck, bus, train
+happy, sad, joy, anger</textarea>
+      <p id="input-hint" class="hint">Comma or newline separated. Cap 80.</p>
+
+      <div class="actions">
+        <button id="embed-btn" type="button">Embed</button>
+        <button id="replay-btn" type="button" disabled>Replay</button>
+      </div>
+
+      <p id="status" role="status">Ready. First embed downloads MiniLM (~80 MB).</p>
+
+      <section id="legend-section" hidden>
+        <h2>Clusters</h2>
+        <ul id="legend"></ul>
+      </section>
+
+      <section id="neighbor-section" hidden>
+        <h2>Neighbors</h2>
+        <p id="neighbor-title"></p>
+        <ul id="neighbors"></ul>
+      </section>
+    </aside>
+    <div id="viewport" aria-label="3D word embedding view"></div>
+  </div>
+  <script type="module" src="/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+:root {
+  --bg: #101218;
+  --panel: #171b24;
+  --ink: #e8e4d8;
+  --muted: #8d93a3;
+  --line: #2a3140;
+  --accent: #e2a33a;
+  --accent-ink: #1a1408;
+  --font: "IBM Plex Sans", "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", "Cascadia Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  height: 100%;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 1.25rem 1.15rem 1.4rem;
+  background: var(--panel);
+  border-right: 1px solid var(--line);
+  overflow: auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+}
+
+.lede,
+.hint,
+#status,
+#neighbor-title {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+label {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mode-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.mode-toggle button {
+  border: 1px solid var(--line);
+  background: #10141c;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.mode-toggle button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 10rem;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #10141c;
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+textarea:focus,
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+button {
+  border: 0;
+  border-radius: 6px;
+  padding: 0.62rem 0.7rem;
+  font: 600 0.85rem var(--font);
+  cursor: pointer;
+}
+
+#embed-btn {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+#replay-btn {
+  background: #252b38;
+  color: var(--ink);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+#status {
+  min-height: 2.4em;
+}
+
+h2 {
+  margin: 0.5rem 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#legend,
+#neighbors {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#neighbor-title {
+  overflow-wrap: anywhere;
+}
+
+#legend li,
+#neighbors li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0.28rem 0;
+  font-size: 0.82rem;
+}
+
+#neighbors li span:first-child {
+  overflow-wrap: anywhere;
+}
+
+.swatch {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+#neighbors li span:last-child {
+  margin-left: auto;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+#viewport {
+  position: relative;
+  min-width: 0;
+  background: radial-gradient(circle at 50% 35%, #1b2230 0%, #0c0e13 70%);
+}
+
+#viewport canvas {
+  display: block;
+}
+
+.word-label {
+  color: #f3efe4;
+  font: 12px/1.2 var(--mono);
+  padding: 2px 6px;
+  background: rgba(12, 14, 20, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  white-space: nowrap;
+  max-width: 16rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  pointer-events: none;
+}
+
+.word-label.is-hovered {
+  color: var(--accent);
+  border-color: rgba(226, 163, 58, 0.55);
+}
+
+.word-label.is-neighbor {
+  color: #f0d9a8;
+}
+
+@media (max-width: 840px) {
+  #app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  #sidebar {
+    max-height: 42vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}
